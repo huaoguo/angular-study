@@ -1,1 +1,14 @@
-div(class='header') Hello Jade!
+extends layout
+block content
+  style.
+    .red {
+      color: red;
+    }
+    .blue {
+      color: blue;
+    }
+  div(ng-controller='HelloController')
+    input(class='form-control', ng-model='name')
+    a(class='btn btn-link', ng-click='hello(name)') Hello {{ name }}!
+    ul
+      li(ng-click='helloToUser(user)', ng-repeat='user in users', ng-class='$index % 2 == 0 ? "red" : "blue"') {{ $index}}. {{ user.name }}, {{ user.age }}

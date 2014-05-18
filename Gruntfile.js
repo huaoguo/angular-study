@@ -17,7 +17,7 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       dist: {
-        src: ['dist/**/*.js'],
+        src: ['dist/coffee/**/*.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
@@ -77,6 +77,9 @@ module.exports = function(grunt) {
       app: ['coffee/**/*.coffee'],
     },
     jade: {
+      options: {
+        pretty: true
+      },
       build: {
         expand: true,
         src: ['view/**/*.jade'],
@@ -90,8 +93,12 @@ module.exports = function(grunt) {
         tasks: ['jshint:gruntfile']
       },
       coffee: {
-        files: '*.coffee',
-        tasks: ['coffee', 'uglify']
+        files: 'coffee/**/*.coffee',
+        tasks: ['coffeelint', 'coffee', 'concat', 'uglify']
+      },
+      jade: {
+        files: 'view/**/*.jade',
+        tasks: ['jade']
       }
     }
   });
